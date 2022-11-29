@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div dir="rtl">
+{% include 'parts/search.html' %}
+</div>
+<!-- bradcam_area  -->
+
+<div dir="rtl">
+<div class="container">
+    <div class="signup">
+
+    <div class="col-md-9" >
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="auth-header">انشاء مدونه جديده</h4>
+
+                <div class="form-group">
+                    {{plugin.title_plugin|as_crispy_field}}
+                </div>
+
+
+                <div class="form-group" style="margin-right: -10rem;">
+                    <p>المحتوى الخاص بالمقالة</p>
+                    {{plugin.plugin|as_crispy_field}}
+                    
+                    
+                </div>
+                <div class="form-group">
+                    {{plugin.img}}
+                </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-w"><button type="submit" class="btn btn-success">اضافة</button></div>
+            
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+{% endblock content %}
