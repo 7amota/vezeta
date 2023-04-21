@@ -28,6 +28,7 @@ class Login(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username' , 'password')
+        
 class UpdateUserForm(forms.ModelForm):
     email = forms.CharField(label='ألاميل الالكتروني')
     first_name = forms.CharField(label='ألاسم الاول')
@@ -65,4 +66,12 @@ class New_Plugin(forms.ModelForm):
             'plugin',
             'img'
         )
-        
+
+class Appointmentform(forms.ModelForm):
+    class Meta:
+        model = Appointmentdef
+        fields = (
+            'name',
+            'phone',
+            'gmail',
+        )

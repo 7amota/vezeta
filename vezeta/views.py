@@ -2,8 +2,8 @@ from django.shortcuts import render , redirect
 from .models import *
 from django.contrib.auth.models import User
 from .forms import *
-from django.contrib.auth import authenticate , login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate , login 
+from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 
 # Create your views here.
@@ -22,6 +22,7 @@ def doctor_detail(request , slug):
                     search = search.filter(title__icontains = title)
             
     doctor_detail = Profile.objects.get(slug = slug)
+    
     context = {
             'doctor_detail' : doctor_detail,
             'search' : search
@@ -43,15 +44,17 @@ def login_form(request):
 
 
         context = {'form' : form}
-        return render( request ,'pages/login.html', context )
+        return render(request ,'pages/login.html', context )
 @login_required
 def update_profile(request):
+    
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
+            
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect('/')
@@ -59,10 +62,11 @@ def update_profile(request):
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
-    return render(request, 'pages/update_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'pages/update_profile.html', {'user_form': user_form, 'profile_form': profile_form,})
 def sign_up(request):
         if request.method == 'POST':
               sign = UserCreationForms(request.POST)
+              
               if sign.is_valid():
                       user = sign.save()
                       login(request , user)
@@ -99,12 +103,37 @@ def new_plugin(request):
                 'plugin' : form
         })
 
-def blug_list(request):
+def blug_list(request,):
         blug = NewPost.objects.all()
         context = {
-                'blug' : blug
+                'blug' : blug,
+                
         }
         
         return render(request , 'pages/blug_list.html', context )
-def blug_detail(request):
-        return render(request , 'pages/blug_detail.html' )
+def blug_detail(request, id):
+        profile = Profile.objects.all()
+        blug_id = NewPost.objects.get(id=id)
+        context = {
+                'blug' : blug_id,
+                'profile' : profile
+
+        }
+        return render(request , 'pages/blug_detail.html', context
+        )
+
+def appointment(reqeust, slug):
+        form = Appointmentform()
+        doctor_detail = Profile.objects.get(slug = slug)
+
+        if reqeust.method == 'POST':
+                form = Appointmentform(reqeust.POST)
+                if form.is_valid():
+                        form.save()
+                        messages.success(reqeust, 'تم الحجز بنجاح !',)
+                        return redirect('/')
+
+        return render(reqeust , 'pages/appointment.html', {
+             'app' : form,
+             'doctor' : doctor_detail
+        })

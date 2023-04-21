@@ -63,7 +63,7 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        return '%s' %(self.user)    
+        return '%s' %(self.name)    
         
 
         
@@ -73,7 +73,15 @@ class Profile(models.Model):
     post_save.connect(create_profile , sender = User)
 
 class NewPost(models.Model):
-    title_plugin = models.CharField(("عنوان المقال"), max_length=150)
+    title_plugin = models.CharField(("عنوان المقال"), max_length=150, )
     date = models.DateTimeField(auto_now_add=True)
     img = models.ImageField(("صورة للمقال"), upload_to='cats/%y/%m/%d' , blank = True , null = True )
     plugin = models.TextField((""))
+    
+       
+
+class Appointmentdef(models.Model):
+    name = models.CharField(("الأسم "), max_length=50)
+    phone = models.IntegerField(("رقم الهاتف"))
+    gmail = models.CharField(("البريد الالكتروني "), max_length=50)
+    

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div dir="rtl">
+    <div class="container">
+        <div class="signup">
+    
+            <div class="col-md-8" >
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h4 class="auth-header"> احجز ميعاد لدكتور  {{doctor.name}}</h4>
+    
+    
+                    <div class="form-group">
+                        {{app.name|as_crispy_field}}
+                    </div>
+                    <div class="form-group">
+                        {{app.phone|as_crispy_field}}
+                    </div>
+                    <div class="form-group">
+                        {{app.gmail|as_crispy_field}}
+                    </div>
+                    <h5 class="auth-header"> ملاحظة: سعر الكشف {{doctor.price}}</h5>
+                    <div class="buttons-w  "><button type="submit" class="btn btn-danger ml-5">احجز</button>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    
+    </div>
+    </div>
+    {% endblock content %}

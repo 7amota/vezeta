@@ -9,13 +9,13 @@
     <div class="job_listing_area">
         <div class="container">
             {% for doctor in profile %} 
-
+            {% if doctor.profile.name and doctor.profile.price and doctor.profile.address and doctor.profile.Specialization %}
             <div class="job_lists">
                 <div class="row">
                     <div class="col-lg-10 col-md-10" style="height: 16rem;" >
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
-                                <div >
+                                <div>
                                     {% if doctor.profile.image %}
                                     <img  src="{{doctor.profile.image.url}}" alt="" width="100" height="100">
                                     {% else %}
@@ -78,7 +78,7 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3" href="{% url 'doctor_detail' doctor.profile.slug %}">حجز كشف</a>
+                                    <a class="boxed-btn3" href="{% url 'appointment' doctor.profile.slug %}">حجز كشف</a>
                                 </div>
 
                                 <div class="rating">
@@ -101,6 +101,7 @@
                     
                 </div>
             </div>
+            {% endif %}
             {% endfor %} 
         </div>
     </div>

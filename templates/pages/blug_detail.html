@@ -30,23 +30,26 @@
                 <img class="img-fluid image-detail" src="img/blog/single_blog_1.png" alt="">
                 <div class="jobs_right">
                     <div class="apply_now">
+                        {% if blug.realtion.name == profile.name %}
                         <a class="boxed-btn3" href="">تعديل المقالة</a>
                         <a  class="boxed-btn3 delete_blog"  href="" >حذف المقالة</a>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>
             <div class="blog_details">
                 
-                <h2>عملية زراعة الأسنان</h2>
-                <a id="likebutton" class=" btn btn-primary btn-lg" id="like{{ post.id }}"  data-catid="{{ post.id }}" href="" data-catid="{{ post.id }}">Like 2</a> </p> <p id="message"></p>
+                <h2></h2>
+                {% comment %} <a id="likebutton" class=" btn btn-primary btn-lg" id="like{{ post.id }}"  data-catid="{{ post.id }}" href="" data-catid="{{ post.id }}">Like 2</a> </p> <p id="message"></p> {% endcomment %}
                 <ul class="blog-info-link mt-3 mb-4">
-                <li><a href="#"><i class="fa fa-user"></i><p>تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك</p> </a></li>
+                <li><a href="#"><i class="fa fa-user"></i><p>{{blug.plugin}}</p> </a></li>
                 <li><a href="#"><i class="fa fa-comments"></i> 03 كومنتات</a></li>
                 </ul>
-                <p class="excert">جميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك</p></p>
-                <p>الوثف</p>
+                <p class="excert"></p></p>
+                <p></p>
                 <div >
-                    <p>تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك تجميل و زراعه الاسنان  بكالريوس علوم جامعة بورك</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -73,7 +76,7 @@
                 <a href="#">
                     <h4>تم النشر بواسطه <span style="color: blue;">اسم المؤلف</span> في تاريخ <span style="color: blue;">2/2/2020</span></h4>
                 </a>
-                <p>{{object.author.profile.subtitle}}</p>
+                <p>{{user}}</p>
                 </div>
             </div>
         </div>
